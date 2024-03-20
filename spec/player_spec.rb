@@ -4,6 +4,6 @@ Player Tests
 
 require 'player'
 
-Rspec.describe Player do
+RSpec.describe Player do
 
 end

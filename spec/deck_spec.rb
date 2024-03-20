@@ -4,6 +4,6 @@ Deck Tests
 
 require 'deck'
 
-Rspec.describe Deck do
+RSpec.describe Deck do
 
 end

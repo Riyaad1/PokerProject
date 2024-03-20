@@ -4,6 +4,6 @@ Hand Tests
 
 require 'hand'
 
-Rspec.describe Hand do
+RSpec.describe Hand do
 
 end

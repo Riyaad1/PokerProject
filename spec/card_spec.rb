@@ -4,7 +4,7 @@ Card Tests
 
 require 'card'
 
-Rspec.describe Card do
+RSpec.describe Card do
   let(:new_card) { Card.new('Hearts', '2') }
 
   describe '#initialize' do
@@ -16,7 +16,7 @@ Rspec.describe Card do
 
   describe '.card_readout' do
     context 'reads out the card' do
-      it { expect(new_card.cardname).to eq('2 of Hearts') }
+      it { expect(new_card.card_readout).to eq('2 of Hearts') }
     end
   end
 end
