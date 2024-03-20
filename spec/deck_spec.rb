@@ -22,4 +22,18 @@ RSpec.describe Deck do
       it { expect(new_deck.deal_cards.length).to eq(1) }
     end
   end
+
+  describe '.shuffle_deck' do
+    it 'shuffles the deck' do
+      old_deck = new_deck.deck.dup
+      new_deck.shuffle_deck
+      expect(old_deck).to_not eq(new_deck.deck)
+    end
+  end
+
+  describe '.add_cards' do
+    context 'adds to the deck' do
+      it { expect(new_deck.add([Card.new(nil, nil)]).length).to_not eq(52) }
+    end
+  end
 end
