@@ -14,7 +14,7 @@ Rspec.describe Card do
     end
   end
 
-  describe '.cardname' do
+  describe '.card_readout' do
     context 'reads out the card' do
       it { expect(new_card.cardname).to eq('2 of Hearts') }
     end
