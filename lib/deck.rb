@@ -11,11 +11,7 @@ class Deck
   def initialize
     @suits = ['Clubs', 'Spades', 'Hearts', 'Diamonds']
     @values = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
-    @deck = []
+    @deck = @suits.product(@values).map { |suit, value| Card.new(suit, value) }
     @first_turn = false
-
-    @suits.product(@values) do |x, y|
-      @deck << Card.new(x, y)
-    end
   end
 end
