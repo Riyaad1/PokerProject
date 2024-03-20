@@ -16,13 +16,7 @@ class Deck
   end
 
   def deal_cards
-    deal_list = []
-    if @first_turn
-      5.times { deal_list << @deck.pop }
-    else
-      deal_list << @deck.pop
-    end
-    return deal_list
+    return @first_turn? 5.times.map { @deck.pop } : [@deck.pop]
   end
 
   def shuffle_deck
@@ -30,8 +24,6 @@ class Deck
   end
 
   def add_cards(card_list)
-    card_list.each do |card|
-      @deck << card
-    end
+    @deck.concat(card_list)
   end
 end
