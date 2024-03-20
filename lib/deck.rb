@@ -18,9 +18,7 @@ class Deck
   def deal_cards
     deal_list = []
     if @first_turn
-      5.times do
-        deal_list << @deck.pop
-      end
+      5.times { deal_list << @deck.pop }
     else
       deal_list << @deck.pop
     end
