@@ -13,13 +13,13 @@ RSpec.describe Deck do
     end
   end
 
-  describe '.deal' do
+  describe '.deal_cards' do
     it 'deals cards first round' do
       new_deck.first_turn = true
-      expect(new_deck.deal.length).to eq(5)
+      expect(new_deck.deal_cards.length).to eq(5)
     end
     context 'deals cards other rounds' do
-      it { expect(new_deck.deal.length).to eq(1) }
+      it { expect(new_deck.deal_cards.length).to eq(1) }
     end
   end
 end

@@ -14,4 +14,15 @@ class Deck
     @deck = @suits.product(@values).map { |suit, value| Card.new(suit, value) }
     @first_turn = false
   end
+
+  def deal_cards
+    deal_list = []
+    if @first_turn
+      5.times do |z|
+        deal_list << @deck.pop
+      end
+    else
+      deal_list << @deck.pop()
+    end
+  end
 end
