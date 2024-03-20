@@ -33,7 +33,7 @@ RSpec.describe Deck do
 
   describe '.add_cards' do
     context 'adds to the deck' do
-      it { expect(new_deck.add([Card.new(nil, nil)]).length).to_not eq(52) }
+      it { expect(new_deck.add_cards([Card.new(nil, nil)]).length).to_not eq(52) }
     end
   end
 end

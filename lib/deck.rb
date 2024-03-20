@@ -18,11 +18,22 @@ class Deck
   def deal_cards
     deal_list = []
     if @first_turn
-      5.times do |z|
+      5.times do
         deal_list << @deck.pop
       end
     else
-      deal_list << @deck.pop()
+      deal_list << @deck.pop
+    end
+    return deal_list
+  end
+
+  def shuffle_deck
+    @deck.shuffle!
+  end
+
+  def add_cards(card_list)
+    card_list.each do |card|
+      @deck << card
     end
   end
 end
