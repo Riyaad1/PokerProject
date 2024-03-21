@@ -13,18 +13,8 @@ class Hand
     @current_hand = ''
     @high_card = '0'
     @player_deck = player_deck
-    @suits = []
-    @values = []
-
-    @player_deck.each do |x|
-      @suits << x.suit
-      if faces.key?(x.value)
-        @values << faces[x.value]
-      else
-        @values << x.value
-      end
-    end
-    @values.sort!
+    @suits = @player_deck.map(&:suit)
+    @values = @player_deck.map { |x| faces.key?(x.value)? faces[x.value] : x.value }.sort
   end
 
   def determine
