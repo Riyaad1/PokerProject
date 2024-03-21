@@ -28,4 +28,20 @@ class Hand
     end
     values.sort!
   end
+
+  def flushes
+
+  end
+
+  def four_full
+
+  end
+
+  def three_pairs
+
+  end
+
+  def straight_high
+
+  end
 end
