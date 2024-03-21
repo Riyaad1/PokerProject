@@ -3,8 +3,17 @@ Hand Tests
 '''
 
 require 'hand'
+require 'card'
 
 RSpec.describe Hand do
+  describe '#initialize' do
+    let(:temp_hand) { Hand.new([Card.new('Hearts', '5'), Card.new('Clubs', '5'), Card.new('Spades', '6'), Card.new('Diamonds', '6'), Card.new('Clubs', 'Jack')]) }
+
+    it 'sets up suits and values' do
+      expect(temp_hand.suits.length).to_not eq(0)
+      expect(temp_hand.values.length).to_not eq(0)
+    end
+  end
   #describe '.determine' do
     #let(:temp_hand) { Hand.new([Card.new('Hearts', '5'), Card.new('Clubs', '5'), Card.new('Spades', '6'), Card.new('Diamonds', '6'), Card.new('Clubs', 'Jack')])}
 
@@ -62,17 +71,17 @@ RSpec.describe Hand do
 
   describe '.flushes' do
     it 'Royal Flush' do
-      royal_hand = Hand.new(nil)
+      royal_hand = Hand.new([Card.new('x', 'y')])
       royal_hand.flushes(%w[10 11 12 13 14])
       expect(royal_hand.current_hand).to eq('Royal Flush')
     end
     it 'Straight Flush' do
-      straight_hand = Hand.new(nil)
+      straight_hand = Hand.new([Card.new('x', 'y')])
       straight_hand.flushes(%w[2 3 4 5 6])
       expect(straight_hand.current_hand).to eq('Straight Flush')
     end
     it 'Flush' do
-      flush_hand = Hand.new(nil)
+      flush_hand = Hand.new([Card.new('x', 'y')])
       flush_hand.flushes(%w[2 4 6 8 10])
       expect(flush_hand.current_hand).to eq('Flush')
     end
@@ -80,12 +89,12 @@ RSpec.describe Hand do
 
   describe '.four_full' do
     it 'Four-of-a-Kind' do
-      four_hand = Hand.new(nil)
+      four_hand = Hand.new([Card.new('x', 'y')])
       four_hand.four_full(%w[2 2 2 2 3])
       expect(four_hand.current_hand).to eq('Four-of-a-Kind')
     end
     it 'Full House' do
-      full_hand = Hand.new(nil)
+      full_hand = Hand.new([Card.new('x', 'y')])
       full_hand.four_full(%w[2 2 2 3 3])
       expect(full_hand.current_hand).to eq('Full House')
     end
@@ -93,17 +102,17 @@ RSpec.describe Hand do
 
   describe '.three_pairs' do
     it 'Three-of-a-Kind' do
-      three_hand = Hand.new(nil)
+      three_hand = Hand.new([Card.new('x', 'y')])
       three_hand.three_pairs(%w[3 3 3 2 1])
       expect(three_hand.current_hand).to eq('Three-of-a-Kind')
     end
     it 'Two Pair' do
-      two_hand = Hand.new(nil)
+      two_hand = Hand.new([Card.new('x', 'y')])
       two_hand.three_pairs(%w[3 3 6 6 2])
       expect(two_hand.current_hand).to eq('Two Pair')
     end
     it 'One Pair' do
-      one_hand = Hand.new(nil)
+      one_hand = Hand.new([Card.new('x', 'y')])
       one_hand.three_pairs(%w[3 3 4 5 6])
       expect(one_hand.current_hand).to eq('One Pair')
     end
@@ -111,12 +120,12 @@ RSpec.describe Hand do
 
   describe '.straight_high' do
     it 'Straight' do
-      new_hand = Hand.new(nil)
+      new_hand = Hand.new([Card.new('x', 'y')])
       new_hand.straight_high(%w[2 3 4 5 6])
       expect(new_hand.current_hand).to eq('Straight')
     end
     it 'High Card' do
-      new_hand = Hand.new(nil)
+      new_hand = Hand.new([Card.new('x', 'y')])
       new_hand.straight_high(%w[11 12 1 5 9])
       expect(new_hand.current_hand).to eq('High Card')
     end

@@ -3,31 +3,32 @@ Holds the player deck and winning hands
 '''
 
 class Hand
-  attr_reader :current_hand, :high_card, :player_deck
+  attr_reader :current_hand, :high_card, :player_deck, :values, :suits
   attr_writer :current_hand, :high_card, :player_deck
 
   RANKING = ['Royal Flush', 'Straight Flush', 'Four-of-a-Kind', 'Full House', 'Flush', 'Straight', 'Three-of-a-Kind', 'Two Pair', 'One Pair', 'High Card']
 
   def initialize(player_deck)
+    faces = {'Jack' => '11', 'Queen' => '12', 'King' => '13', 'Ace' => '14'}
     @current_hand = ''
     @high_card = '0'
     @player_deck = player_deck
+    @suits = []
+    @values = []
+
+    @player_deck.each do |x|
+      @suits << x.suit
+      if faces.key?(x.value)
+        @values << faces[x.value]
+      else
+        @values << x.value
+      end
+    end
+    @values.sort!
   end
 
   def determine
-    suits = []
-    values = []
-    faces = {'Jack' => '11', 'Queen' => '12', 'King' => '13', 'Ace' => '14'}
-    @player_deck.each do |x|
-      suits << x.suit
-      if faces.key?(x.value)
-        values << faces[x.value]
-      else
-        values << x.value
-      end
-    end
-    values.sort!
-    # code to be written laster
+    # code to be written later
   end
 
   def flushes(values)
