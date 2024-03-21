@@ -136,21 +136,21 @@ RSpec.describe Hand do
     let(:hand1) { Hand.new([Card.new('x', 'y')]) }
     let(:hand2) { Hand.new([Card.new('x', 'y')]) }
     it 'Straight Flush Win' do
-      new_hand.current_hand = 'Straight Flush'
-      new_hand2.current_hand = 'One Pair'
-      expect(new_hand.fight(hand2)).to eq('Win')
+      hand1.current_hand = 'Straight Flush'
+      hand2.current_hand = 'One Pair'
+      expect(hand1.fight(hand2)).to eq('Win')
     end
     it 'Straight Flush Lose' do
       hand1.current_hand = 'Straight Flush'
       hand2.current_hand = 'Royal Flush'
-      expect(hand.fight(hand2)).to_not eq('Win')
+      expect(hand1.fight(hand2)).to_not eq('Win')
     end
     it 'High Card' do
       hand1.current_hand = 'High Card'
       hand1.high_card = '14'
       hand2.current_hand = 'High Card'
       hand2.high_card = '12'
-      expect(hand.fight(hand2)).to eq('Win')
+      expect(hand1.fight(hand2)).to eq('Win')
     end
   end
 end

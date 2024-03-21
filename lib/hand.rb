@@ -54,4 +54,11 @@ class Hand
     expectation = %w[2 3 4 5 6 7 8 9 10 11 12 13 14]
     @current_hand = (values.all? { |value| expectation.include?(value) } && values.max.to_i - values.min.to_i == 4)? 'Straight' : 'High Card'
   end
+
+  def fight(other)
+    own_hand, other_hand = RANKING.index(@current_hand), RANKING.index(other.current_hand)
+    return 'Win' if own_hand < other_hand || (own_hand == other_hand && @high_card > other.high_card)
+    return 'Tie' if own_hand == other_hand && @high_card == other.high_card
+    return 'Loss'
+  end
 end
