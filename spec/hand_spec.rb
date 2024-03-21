@@ -80,13 +80,13 @@ RSpec.describe Hand do
 
   describe '.four_full' do
     it 'Four-of-a-Kind' do
-      four_hand = Hand.new([Card.new('Hearts', '6'), Card.new('Clubs', '6'), Card.new('Spades', '6'), Card.new('Diamonds', '6'), Card.new('Clubs', 'Jack')])
-      four_hand.four_full
+      four_hand = Hand.new(nil)
+      four_hand.four_full(%w[2 2 2 2 3])
       expect(four_hand.current_hand).to eq('Four-of-a-Kind')
     end
     it 'Full House' do
-      full_hand = Hand.new([Card.new('Hearts', '4'), Card.new('Clubs', '4'), Card.new('Spades', '4'), Card.new('Diamonds', '8'), Card.new('Clubs', '8')])
-      full_hand.determine
+      full_hand = Hand.new(nil)
+      full_hand.four_full(%w[2 2 2 3 3])
       expect(full_hand.current_hand).to eq('Full House')
     end
   end
