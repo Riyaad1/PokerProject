@@ -11,15 +11,32 @@ class Hand
   def initialize(player_deck)
     faces = {'Jack' => '11', 'Queen' => '12', 'King' => '13', 'Ace' => '14'}
     @current_hand = ''
-    @high_card = '0'
     @player_deck = player_deck
     @suits = @player_deck.map(&:suit)
     @values = @player_deck.map { |x| faces.key?(x.value)? faces[x.value] : x.value }.sort
+    @high_card = [-1]
   end
 
   def determine
     unique_suits = @suits.uniq
     unique_values = @values.uniq
+
+    if unique_suits.length == 1
+      self.flushes(@values)
+      return
+    end
+    if unique_values.length <= 2
+      self.four_full(@values)
+      return
+    end
+    if unique_values.length >= 3 && 5 > unique_values.length
+      self.three_pairs(@values)
+      return
+    end
+    if unique_values.length == 5
+      self.straight_high(@values)
+      return
+    end
   end
 
   def flushes(values)
@@ -34,7 +51,8 @@ class Hand
 
   def four_full(values)
     temp_storage = values.each_with_object(Hash.new(0)) { |x, y| y[x] += 1 }
-    temp_storage.each { |_x, y| @current_hand = (y == 4)? 'Four-of-a-Kind' : 'Full House'; break }
+    temp_storage = temp_storage.sort_by { |_key, value| value }.to_h
+    @current_hand = (temp_storage[temp_storage.keys.last] == 4)? 'Four-of-a-Kind': 'Full House'
   end
 
   def three_pairs(values)
