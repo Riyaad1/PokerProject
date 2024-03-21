@@ -13,29 +13,18 @@ class Hand
     @current_hand = ''
     @player_deck = player_deck
     @suits = @player_deck.map(&:suit)
-    @values = @player_deck.map { |x| faces.key?(x.value)? faces[x.value] : x.value }.sort
-    @high_card = [-1]
+    @values = @player_deck.map { |x| faces.key?(x.value) ? faces[x.value] : x.value }.sort_by(&:to_i).map(&:to_s)
+    @high_card = @values[-1]
   end
 
   def determine
-    unique_suits = @suits.uniq
-    unique_values = @values.uniq
+    unique_suits, unique_values = @suits.uniq, @values.uniq
 
-    if unique_suits.length == 1
-      self.flushes(@values)
-      return
-    end
-    if unique_values.length <= 2
-      self.four_full(@values)
-      return
-    end
-    if unique_values.length >= 3 && 5 > unique_values.length
-      self.three_pairs(@values)
-      return
-    end
-    if unique_values.length == 5
-      self.straight_high(@values)
-      return
+    case
+    when unique_suits.length == 1 then flushes(@values)
+    when unique_values.length <= 2 then four_full(@values)
+    when unique_values.length >= 3 && unique_values.length < 5 then three_pairs(@values)
+    when unique_values.length == 5 then straight_high(@values)
     end
   end
 

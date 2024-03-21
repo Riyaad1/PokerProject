@@ -12,6 +12,7 @@ RSpec.describe Hand do
     it 'sets up suits and values' do
       expect(temp_hand.suits.length).to_not eq(0)
       expect(temp_hand.values.length).to_not eq(0)
+      expect(temp_hand.high_card).to eq('11')
     end
   end
   describe '.determine' do
