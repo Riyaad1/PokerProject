@@ -93,31 +93,31 @@ RSpec.describe Hand do
 
   describe '.three_pairs' do
     it 'Three-of-a-Kind' do
-      three_hand = Hand.new([Card.new('Hearts', '4'), Card.new('Clubs', '4'), Card.new('Spades', '4'), Card.new('Diamonds', '8'), Card.new('Clubs', 'Jack')])
-      three_hand.determine
+      three_hand = Hand.new(nil)
+      three_hand.three_pairs(%[3 3 3 2 1])
       expect(three_hand.current_hand).to eq('Three-of-a-Kind')
     end
     it 'Two Pair' do
-      two_hand = Hand.new([Card.new('Hearts', '5'), Card.new('Clubs', '5'), Card.new('Spades', '6'), Card.new('Diamonds', '6'), Card.new('Clubs', 'Jack')])
-      two_hand.determine
+      two_hand = Hand.new(nil)
+      two_hand.three_pairs(%[3 3 3 3 2])
       expect(two_hand.current_hand).to eq('Two Pair')
     end
     it 'One Pair' do
-      one_hand = Hand.new([Card.new('Hearts', '5'), Card.new('Clubs', '5'), Card.new('Spades', '6'), Card.new('Diamonds', '8'), Card.new('Clubs', 'Jack')])
-      one_hand.determine
+      one_hand = Hand.new(nil)
+      one_hand.three_pairs[%[3 3 4 5 6]]
       expect(one_hand.current_hand).to eq('One Pair')
     end
   end
 
   describe '.straight_high' do
     it 'Straight' do
-      new_hand = Hand.new([Card.new('Hearts', '5'), Card.new('Clubs', '6'), Card.new('Spades', '7'), Card.new('Diamonds', '8'), Card.new('Clubs', '9')])
-      new_hand.determine
+      new_hand = Hand.new(nil)
+      new_hand.straight_high(%[2 3 4 5 6])
       expect(new_hand.current_hand).to eq('Straight')
     end
     it 'High Card' do
-      new_hand = Hand.new([Card.new('Hearts', '4'), Card.new('Clubs', '5'), Card.new('Spades', '6'), Card.new('Diamonds', '8'), Card.new('Clubs', 'Jack')])
-      new_hand.determine
+      new_hand = Hand.new(nil)
+      new_hand.straight_high(%[11 12 1 5 9])
       expect(new_hand.current_hand).to eq('High Card')
     end
   end
