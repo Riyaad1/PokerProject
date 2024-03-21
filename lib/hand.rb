@@ -18,7 +18,8 @@ class Hand
   end
 
   def determine
-    # code to be written later
+    unique_suits = @suits.uniq
+    unique_values = @values.uniq
   end
 
   def flushes(values)
