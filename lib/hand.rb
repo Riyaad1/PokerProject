@@ -34,11 +34,7 @@ class Hand
     expectation = %w[2 3 4 5 6 7 8 9 10 11 12 13 14]
     royal_expectation = %w[10 11 12 13 14]
     if values.all? { |value| expectation.include?(value) } && values.max.to_i - values.min.to_i == 4
-      if values == royal_expectation
-        @current_hand = 'Royal Flush'
-      else
-        @current_hand = 'Straight Flush'
-      end
+      @current_hand = (values == royal_expectation)? 'Royal Flush' : 'Straight Flush'
       return
     end
     @current_hand = 'Flush'
