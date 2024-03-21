@@ -27,21 +27,23 @@ class Hand
       end
     end
     values.sort!
+    # code to be written laster
   end
 
-  def flushes
+  def flushes(values)
+    expectation = %w[2 3 4 5 6 7 8 9 10 11 12 13 14]
+    royal_expectation = %w[10 11 12 13 14]
+  end
+
+  def four_full(values)
 
   end
 
-  def four_full
+  def three_pairs(values)
 
   end
 
-  def three_pairs
-
-  end
-
-  def straight_high
+  def straight_high(values)
 
   end
 end
