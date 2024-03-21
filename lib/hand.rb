@@ -57,10 +57,28 @@ class Hand
   end
 
   def three_pairs(values)
-
+    temp_storage = Hash.new(0)
+    values.each do |x|
+      temp_storage[x] += 1
+    end
+    temp_storage = temp_storage.sort_by { |_key, value| value }.to_h
+    if temp_storage.length == 3 && temp_storage[temp_storage.keys.last] != 3
+      @current_hand = 'Two Pair'
+      return
+    elsif temp_storage.length == 4
+      @current_hand = 'One Pair'
+      return
+    else
+      @current_hand = 'Three-of-a-Kind'
+    end
   end
 
   def straight_high(values)
-
+    expectation = %w[2 3 4 5 6 7 8 9 10 11 12 13 14]
+    if values.all? { |value| expectation.include?(value) } && values.max.to_i - values.min.to_i == 4
+      @current_hand = 'Straight'
+      return
+    end
+    @current_hand ='High Card'
   end
 end
