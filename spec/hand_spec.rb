@@ -58,7 +58,7 @@ RSpec.describe Hand do
     #   high_hand.determine
     #   expect(high_hand.current_hand).to eq('High Card')
     # end
-  end
+  # end
 
   describe '.flushes' do
     it 'Royal Flush' do
