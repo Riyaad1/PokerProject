@@ -41,44 +41,18 @@ class Hand
   end
 
   def four_full(values)
-    temp_storage = Hash.new(0)
-    values.each do |x|
-      temp_storage[x] += 1
-    end
-    temp_storage.each do |_x, y|
-      if y == 4
-        @current_hand = 'Four-of-a-Kind'
-        return
-      else
-        @current_hand = 'Full House'
-        return
-      end
-    end
+    temp_storage = values.each_with_object(Hash.new(0)) { |x, y| y[x] += 1 }
+    temp_storage.each { |_x, y| @current_hand = (y == 4)? 'Four-of-a-Kind' : 'Full House'; break }
   end
 
   def three_pairs(values)
-    temp_storage = Hash.new(0)
-    values.each do |x|
-      temp_storage[x] += 1
-    end
+    temp_storage = values.each_with_object(Hash.new(0)) { |x, y| y[x] += 1 }
     temp_storage = temp_storage.sort_by { |_key, value| value }.to_h
-    if temp_storage.length == 3 && temp_storage[temp_storage.keys.last] != 3
-      @current_hand = 'Two Pair'
-      return
-    elsif temp_storage.length == 4
-      @current_hand = 'One Pair'
-      return
-    else
-      @current_hand = 'Three-of-a-Kind'
-    end
+    @current_hand = (temp_storage.length == 3 && temp_storage[temp_storage.keys.last] != 3)? 'Two Pair' : (temp_storage.length == 4)? 'One Pair' : 'Three-of-a-Kind'
   end
 
   def straight_high(values)
     expectation = %w[2 3 4 5 6 7 8 9 10 11 12 13 14]
-    if values.all? { |value| expectation.include?(value) } && values.max.to_i - values.min.to_i == 4
-      @current_hand = 'Straight'
-      return
-    end
-    @current_hand ='High Card'
+    @current_hand = (values.all? { |value| expectation.include?(value) } && values.max.to_i - values.min.to_i == 4)? 'Straight' : 'High Card'
   end
 end

@@ -99,12 +99,12 @@ RSpec.describe Hand do
     end
     it 'Two Pair' do
       two_hand = Hand.new(nil)
-      two_hand.three_pairs(%w[3 3 3 3 2])
+      two_hand.three_pairs(%w[3 3 6 6 2])
       expect(two_hand.current_hand).to eq('Two Pair')
     end
     it 'One Pair' do
       one_hand = Hand.new(nil)
-      one_hand.three_pairs[%w[3 3 4 5 6]]
+      one_hand.three_pairs(%w[3 3 4 5 6])
       expect(one_hand.current_hand).to eq('One Pair')
     end
   end
