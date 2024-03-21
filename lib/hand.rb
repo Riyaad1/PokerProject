@@ -41,7 +41,19 @@ class Hand
   end
 
   def four_full(values)
-
+    temp_storage = Hash.new(0)
+    values.each do |x|
+      temp_storage[x] += 1
+    end
+    temp_storage.each do |_x, y|
+      if y == 4
+        @current_hand = 'Four-of-a-Kind'
+        return
+      else
+        @current_hand = 'Full House'
+        return
+      end
+    end
   end
 
   def three_pairs(values)
