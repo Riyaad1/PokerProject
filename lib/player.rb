@@ -23,4 +23,23 @@ class Player
     end
   end
 
+  def player_choice(choice)
+    case choice.upcase
+    when 'RAISE'
+      puts "You have chose to raise the bet\nYour current bet is: #{@player_bet}\nHow much will you raise by?"
+      user_response = gets.to_i
+      while @player_pot - user_response < 0
+        puts 'Invalid value, enter a valid value'
+        user_response = gets.to_i
+      end
+      @player_pot -= user_response
+      @player_bet += user_response
+      puts "Your bet is now: #{@player_bet}"
+      return user_response
+    when 'FOLD'
+
+    when 'SEE'
+
+    end
+  end
 end
