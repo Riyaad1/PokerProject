@@ -13,7 +13,7 @@ RSpec.describe Player do
       it { expect(new_player.discard(0, 1)).to_not eq(nil) }
     end
     context 'player folded so cards return back to deck' do
-      it { expect(new_player.discard(0, 1)).to_not eq(nil) }
+      it { expect(new_player.discard(0, 5).length).to eq(5) }
     end
   end
   describe '.player_choice' do

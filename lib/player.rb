@@ -19,7 +19,7 @@ class Player
     when 1
       return [@hand.player_deck.delete_at(card_index)]
     when 5 # Only when folding
-      return [@hand.player_deck.pop, @hand.player_deck.pop, @hand.player_deck.pop, @hand.player_deck.pop, @hand.player_deck.pop]
+      return Array.new(5) { @hand.player_deck.pop }
     end
   end
 
