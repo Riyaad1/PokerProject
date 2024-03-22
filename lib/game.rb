@@ -34,7 +34,7 @@ class Game
   def player_turn(player, i)
     puts "Player #{i + 1}, choose to raise, see, or fold.\nYour current pot: #{player.player_pot}"
     user_response = gets.upcase
-    while user_response != 'RAISE' && user_response != 'SEE' && user_response != 'FOLD'
+    until ['RAISE', 'FOLD', 'SEE'].include?(user_response)
       puts 'Invalid, try again'
       user_response = gets.upcase
     end
