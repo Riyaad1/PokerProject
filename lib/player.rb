@@ -26,10 +26,10 @@ class Player
   def player_choice(choice)
     case choice.upcase
     when 'RAISE'
-      puts "You have chose to raise the bet\nYour current bet is: #{@player_bet}\nHow much will you raise by?"
+      puts "You have chose to raise the bet\nYour current bet is: #{@player_bet}\nHow much will you raise by? "
       user_response = gets.to_i
-      while @player_pot - user_response < 0
-        puts 'Invalid value, enter a valid value'
+      while @player_pot < user_response
+        puts 'Invalid value, enter a valid value: '
         user_response = gets.to_i
       end
       @player_pot -= user_response
@@ -38,10 +38,9 @@ class Player
       return user_response
     when 'FOLD'
       puts 'You have chose to fold'
-      folded_deck = self.discard(nil, 5)
       @bet = 0
       @folded = true
-      return folded_deck
+      return self.discard(nil, 5)
     when 'SEE' # This doesn't do anything here, but does work in the game class to show the bet
       return 'SEE'
     end
