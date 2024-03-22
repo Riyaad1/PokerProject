@@ -30,4 +30,17 @@ class Game
     @masterdeck.first_turn = false
     @bet_pot += user_response
   end
+
+  def player_turn(player, i)
+    puts "Player #{i + 1}, choose to raise, see, or fold.\nYour current pot: #{player_turn.player_pot}"
+    user_response = gets.chomp
+    while response.upcase != 'RAISE' && response.upcase != 'SEE' && response.upcase != 'FOLD'
+      puts 'Invalid, try again'
+      user_response = gets.chomp
+    end
+    action = player.player_choice(user_response)
+    case user_response.upcase
+    when
+    end
+  end
 end
