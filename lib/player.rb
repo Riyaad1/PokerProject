@@ -13,4 +13,14 @@ class Player
     @player_bet = 0
     @folded = false
   end
+
+  def discard(card_index, card_amount=1)
+    case card_amount
+    when 1
+      return [@hand.player_deck.delete_at(card_index)]
+    when 5 # Only when folding
+      return [@hand.player_deck.pop, @hand.player_deck.pop, @hand.player_deck.pop, @hand.player_deck.pop, @hand.player_deck.pop]
+    end
+  end
+
 end
