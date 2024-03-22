@@ -18,7 +18,7 @@ RSpec.describe Game do
     it 'plays out the first turn' do
       allow_any_instance_of(Player).to receive(:gets).and_return(0, 500)
       new_game.first_turn(temp_player)
-      expect(new_game.master_deck.first_turn).to eq(false)
+      expect(new_game.masterdeck.first_turn).to eq(false)
       expect(temp_player.player_pot).to eq(500)
     end
   end
