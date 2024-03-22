@@ -32,15 +32,21 @@ class Game
   end
 
   def player_turn(player, i)
-    puts "Player #{i + 1}, choose to raise, see, or fold.\nYour current pot: #{player_turn.player_pot}"
-    user_response = gets.chomp
-    while response.upcase != 'RAISE' && response.upcase != 'SEE' && response.upcase != 'FOLD'
+    puts "Player #{i + 1}, choose to raise, see, or fold.\nYour current pot: #{player.player_pot}"
+    user_response = gets.upcase
+    while user_response != 'RAISE' && user_response != 'SEE' && user_response != 'FOLD'
       puts 'Invalid, try again'
-      user_response = gets.chomp
+      user_response = gets.upcase
     end
     action = player.player_choice(user_response)
-    case user_response.upcase
-    when
+    case user_response
+    when 'SEE'
+      puts "Current bet: #{@bet_pot}"
+    when 'RAISE'
+      @bet_pot += action
+    when 'FOLD'
+      @masterdeck.add_cards(action)
+      @players[i] = nil
     end
   end
 end

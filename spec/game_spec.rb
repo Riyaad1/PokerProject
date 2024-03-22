@@ -26,20 +26,21 @@ RSpec.describe Game do
   end
 
   describe '.player_turn' do
+    let(:new_game) { Game.new(0) }
     let(:temp_player) { Player.new([Card.new('Hearts', '4')], 1000)}
     it 'captures users response to raises' do
-      allow_any_instance_of(Game).to receive(:gets).and_return(0, 'raise')
+      allow_any_instance_of(Game).to receive(:gets).and_return('raise')
       allow_any_instance_of(Player).to receive(:gets).and_return(100)
-      new_game.player_turn(temp_player, 1)
+      new_game.player_turn(temp_player, 0)
       expect(new_game.bet_pot).to eq(100)
     end
     it 'captures users response to see' do
-      allow_any_instance_of(Game).to receive(:gets).and_return(0, 'see')
-      expect{new_game.player_turn(temp_player, 1)}.to eq('SEE')
+      allow_any_instance_of(Game).to receive(:gets).and_return('see')
+      expect{new_game.player_turn(temp_player, 0)}.to output("Player 1, choose to raise, see, or fold.\nYour current pot: 1000\nCurrent bet: 0\n").to_stdout
     end
     it 'captures users response to fold' do
-      allow_any_instance_of(Game).to receive(:gets).and_return(0, 'fold')
-      new_game.player_turn(temp_player, 1)
+      allow_any_instance_of(Game).to receive(:gets).and_return('fold')
+      new_game.player_turn(temp_player, 0)
       expect(temp_player.folded).to eq(true)
     end
   end

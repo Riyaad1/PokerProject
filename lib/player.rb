@@ -24,7 +24,7 @@ class Player
   end
 
   def player_choice(choice)
-    case choice.upcase
+    case choice
     when 'RAISE'
       puts "You have chose to raise the bet\nYour current bet is: #{@player_bet}\nHow much will you raise by? "
       user_response = gets.to_i
