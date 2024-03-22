@@ -37,9 +37,13 @@ class Player
       puts "Your bet is now: #{@player_bet}"
       return user_response
     when 'FOLD'
-
-    when 'SEE'
-
+      puts 'You have chose to fold'
+      folded_deck = self.discard(nil, 5)
+      @bet = 0
+      @folded = true
+      return folded_deck
+    when 'SEE' # This doesn't do anything here, but does work in the game class to show the bet
+      return 'SEE'
     end
   end
 end
