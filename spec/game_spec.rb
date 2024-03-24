@@ -75,15 +75,21 @@ RSpec.describe Game do
     let(:new_game) { Game.new(0) }
     let(:player1) { Player.new([Card.new('Hearts', '10'), Card.new('Hearts', 'Jack'), Card.new('Hearts', 'Queen'), Card.new('Hearts', 'King'), Card.new('Hearts', 'Ace')], 1000)}
     let(:player2) { Player.new([Card.new('Hearts', '4'), Card.new('Hearts', '7'), Card.new('Clubs', 'Jack'), Card.new('Diamonds', '2'), Card.new('Spades', 'Ace')], 1000)}
+    let(:player3) { Player.new([Card.new('Hearts', '10'), Card.new('Hearts', 'Jack'), Card.new('Hearts', 'Queen'), Card.new('Hearts', 'King'), Card.new('Hearts', 'Ace')], 1000)}
     it 'determines a win' do
       new_game.players << player1
       new_game.players << player2
-      expect(new_game.player_choice(player1)).to eq('Current Player Wins')
+      expect(new_game.determine_win(player1)).to eq('Current Player Wins')
     end
     it 'determines a loss' do
       new_game.players << player1
       new_game.players << player2
-      expect(new_game.player_choice(player1)).to eq('Current Player Loses')
+      expect(new_game.determine_win(player2)).to eq('Current Player Loses')
+    end
+    it 'determines a tie' do
+      new_game.players << player1
+      new_game.players << player3
+      expect(new_game.determine_win(player1)).to eq('Players Tie')
     end
   end
 end
