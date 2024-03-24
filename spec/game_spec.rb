@@ -46,24 +46,26 @@ RSpec.describe Game do
   end
 
   describe '.discard_choice' do #There might be a weird chance were the decks become same due to the shuffle
+    let(:new_game) { Game.new(0) }
     let(:temp_player) { Player.new([Card.new('Hearts', '4'), Card.new('Hearts', '7'), Card.new('Clubs', 'Jack'), Card.new('Diamonds', '2'), Card.new('Spades', 'Ace')], 1000)}
     it 'discards 1 card' do
       allow_any_instance_of(Game).to receive(:gets).and_return(1, 1, 0)
       new_game.masterdeck.first_turn = false
-      x = temp_player.hand.player_deck
+      x = temp_player.hand.player_deck.dup
+      new_game.discard_choice(temp_player)
       expect(temp_player.hand.player_deck).to_not eq(x)
     end
     it 'discards 2 card' do
       allow_any_instance_of(Game).to receive(:gets).and_return(1, 2, 0)
       new_game.masterdeck.first_turn = false
-      x = temp_player.hand.player_deck
+      x = temp_player.hand.player_deck.dup
       new_game.discard_choice(temp_player)
       expect(temp_player.hand.player_deck).to_not eq(x)
     end
     it 'discards 3 card' do
       allow_any_instance_of(Game).to receive(:gets).and_return(1, 3, 0)
       new_game.masterdeck.first_turn = false
-      x = temp_player.hand.player_deck
+      x = temp_player.hand.player_deck.dup
       new_game.discard_choice(temp_player)
       expect(temp_player.hand.player_deck).to_not eq(x)
     end

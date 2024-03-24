@@ -49,4 +49,23 @@ class Game
       @players[i] = nil
     end
   end
+
+  def discard_choice(player)
+    puts 'How many card will you discard? (1 - 3)'
+    deletion_num = gets.to_i
+    until(1..3).include?(deletion_num)
+        puts 'Invalid, choose a valid value'
+        deletion_num = gets.to_i
+    end
+    deletion_num.times do
+      player.hand.player_deck.each_with_index do |card, index|
+        puts "#{index + 1}. #{card.card_readout}"
+      end
+      puts 'Choose the card number'
+      i = gets.to_i - 1
+      @masterdeck.add_cards(player.discard(i))
+      dealt = masterdeck.deal_cards
+      player.hand.player_deck << dealt[0]
+    end
+  end
 end

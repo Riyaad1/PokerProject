@@ -25,5 +25,6 @@ class Deck
 
   def add_cards(card_list)
     @deck.concat(card_list)
+    self.shuffle_deck
   end
 end
