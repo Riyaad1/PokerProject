@@ -64,8 +64,7 @@ class Game
       puts 'Choose the card number'
       i = gets.to_i - 1
       @masterdeck.add_cards(player.discard(i))
-      dealt = masterdeck.deal_cards
-      player.hand.player_deck << dealt[0]
+      player.hand.player_deck << masterdeck.deal_cards.first
     end
   end
 end
