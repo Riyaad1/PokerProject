@@ -69,22 +69,13 @@ class Game
   end
 
   def determine_win(player)
-    remaining_players = []
-    @players.each do |p|
-      if p != nil
-        remaining_players << p
-      end
-    end
+    remaining_players = @players.compact
     if remaining_players.length == 2
-      if remaining_players.first == player
-        return 'Current Player Wins' if player.hand.fight(remaining_players.last.hand) == 'Win'
-        return 'Players Tie' if player.hand.fight(remaining_players.last.hand) == 'Tie'
-        return 'Current Player Loses'
-      else
-        return 'Current Player Wins' if player.hand.fight(remaining_players.first.hand) == 'Win'
-        return 'Players Tie' if player.hand.fight(remaining_players.first.hand) == 'Tie'
-        return 'Current Player Loses'
-      end
+      opponent = remaining_players.find { |p| p != player }
+      result = player.hand.fight(opponent.hand)
+      return 'Current Player Wins' if result == 'Win'
+      return 'Players Tie' if result == 'Tie'
+      return 'Current Player Loses'
     end
   end
 end
