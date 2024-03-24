@@ -15,6 +15,7 @@ class Hand
     @suits = @player_deck.map(&:suit)
     @values = @player_deck.map { |x| faces.key?(x.value) ? faces[x.value] : x.value }.sort_by(&:to_i).map(&:to_s)
     @high_card = @values[-1]
+    self.determine
   end
 
   def determine

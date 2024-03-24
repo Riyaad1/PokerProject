@@ -67,4 +67,6 @@ class Game
       player.hand.player_deck << masterdeck.deal_cards.first
     end
   end
+
+  def determine_win(player)
 end
