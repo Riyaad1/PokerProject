@@ -1,7 +1,7 @@
 '''
 Defines the players
 '''
-require 'hand'
+require_relative 'hand'
 
 class Player
   attr_reader :folded, :player_pot, :hand
